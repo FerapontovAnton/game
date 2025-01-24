@@ -19,8 +19,8 @@ services:
     build: 
       context: ./storage_service
       dockerfile: Dockerfile
-    ports:
-      - "8001:8001"
+    expose:
+      - "8001"
     networks:
       - game-network
 
@@ -28,8 +28,8 @@ services:
     build: 
       context: ./inventory_service
       dockerfile: Dockerfile
-    ports:
-      - "8002:8002"
+    expose:
+      - "8002"
     depends_on:
       - storage-service
     networks:
@@ -39,8 +39,8 @@ services:
     build: 
       context: ./riddle_service
       dockerfile: Dockerfile
-    ports:
-      - "8003:8003"
+    expose:
+      - "8003"
     depends_on:
       - storage-service
     networks:
@@ -50,8 +50,8 @@ services:
     build: 
       context: ./location_service
       dockerfile: Dockerfile
-    ports:
-      - "8004:8004"
+    expose:
+      - "8004"
     depends_on:
       - storage-service
     networks:

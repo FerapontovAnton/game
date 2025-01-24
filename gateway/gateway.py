@@ -57,6 +57,7 @@ async def get_game(request: Request, player_id: str):
         if response.status_code == 404:
             return RedirectResponse(url="/")
         player_data = response.json()
+        player_data["player_id"] = player_id
         return templates.TemplateResponse("game.html", {
             "request": request,
             "player": player_data
@@ -69,6 +70,7 @@ async def get_inventory(request: Request, player_id: str, message: str = None, s
         if response.status_code == 404:
             return RedirectResponse(url="/")
         player_data = response.json()
+        player_data["player_id"] = player_id
         return templates.TemplateResponse("inventory.html", {
             "request": request,
             "player": player_data,
@@ -96,6 +98,7 @@ async def get_lake(request: Request, player_id: str, message: str = None, succes
         if response.status_code == 404:
             return RedirectResponse(url="/")
         player_data = response.json()
+        player_data["player_id"] = player_id
         
         location_response = await client.get(f"{SERVICES['location']}/location/lake")
         location_data = location_response.json()
